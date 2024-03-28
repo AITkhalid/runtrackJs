@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Jour Travaillé</title>
+    <script>
+        function jourTravaille() {
+            var date = new Date(document.getElementById('date').value);
+
+            // Liste des jours fériés en 2024
+            var joursFeries = [
+                new Date(2024, 0, 1),  // Jour de l'An
+                new Date(2024, 4, 1),  // Fête du Travail
+                new Date(2024, 6, 14), // Fête Nationale
+                new Date(2024, 11, 25) // Noël
+            ];
+
+            for (var i = 0; i < joursFeries.length; i++) {
+                if (date.getDate() === joursFeries[i].getDate() && date.getMonth() === joursFeries[i].getMonth() && date.getFullYear() === joursFeries[i].getFullYear()) {
+                    console.log(`Le ${date.getDate()} ${date.getMonth() + 1} ${date.getFullYear()} est un jour férié`);
+                    return;
+                }
+            }
+
+            // Vérifie si la date est un week-end
+            if (date.getDay() === 6 || date.getDay() === 0) {
+                console.log(`Non, le ${date.getDate()} ${date.getMonth() + 1} ${date.getFullYear()} est un week-end`);
+                return;
+            }
+
+            console.log(`Oui, le ${date.getDate()} ${date.getMonth() + 1} ${date.getFullYear()} est un jour travaillé`);
+        }
+    </script>
+</head>
+<body>
+    <input type="date" id="date">
+    <button onclick="jourTravaille()">Vérifier</button>
+</body>
+</html>
